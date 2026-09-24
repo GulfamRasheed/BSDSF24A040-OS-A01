@@ -35,3 +35,14 @@ pic_objects:
 
 clean:
 	rm -f $(OBJ_DIR)/*.o $(STATIC_LIB) $(DYNAMIC_LIB) $(STATIC_TARGET) $(DYNAMIC_TARGET)
+
+INSTALL_BIN = /usr/local/bin
+INSTALL_LIB = /usr/local/lib
+INSTALL_MAN = /usr/local/share/man/man3
+
+install: $(DYNAMIC_TARGET)
+	cp $(DYNAMIC_TARGET) $(INSTALL_BIN)/client
+	cp $(DYNAMIC_LIB) $(INSTALL_LIB)/
+	ldconfig
+	mkdir -p $(INSTALL_MAN)
+	cp ../man/man3/*.3 $(INSTALL_MAN)/
